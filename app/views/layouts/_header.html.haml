@@ -1,0 +1,23 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .container
+    .nav
+      = link_to "AmazeKart",root_path, id:"logo"
+      %ul.nav.navbar-nav.navbar-right
+        %li 
+          =link_to 'Home', '#' 
+        %li 
+          =link_to 'Help', '#'
+        - if user_signed_in?
+          
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              Account
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", '#'
+              %li= link_to "Settings", '#'
+              %li.divider
+              %li
+                = link_to "Log out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Log in", user_session_path
