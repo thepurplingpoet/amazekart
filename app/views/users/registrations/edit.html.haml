@@ -3,12 +3,16 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
+    = f.label :name
+    %br/
+    = f.text_field :name, autofocus: true
+  .field
     = f.label :email
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autocomplete: "email"
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
+      Currently waiting confirmation for: #{resource.unconfirmed_email} 
   .field
     = f.label :password
     %i (leave blank if you don't want to change it)
@@ -28,6 +32,9 @@
     %i (we need your current password to confirm your changes)
     %br/
     = f.password_field :current_password, autocomplete: "current-password"
+  .field
+    = f.label :yes_i_want_to_be_a_seller, "Yes, I want to be a seller", class: "custom-label"
+    = f.check_box :seller, class: "check-box"
   .actions
     = f.submit "Update"
 %h3 Cancel my account
