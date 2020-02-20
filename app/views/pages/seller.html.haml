@@ -1,0 +1,10 @@
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+  - Product.all.each do |product|
+    %tr
+      %td= product.name
+      %td= product.description
+      %td= link_to 'Show', product_path(product)

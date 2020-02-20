@@ -10,7 +10,7 @@
         - if user_signed_in?
           - if current_user.seller?
             %li 
-              = link_to 'Seller Page', pages_home_path
+              = link_to 'Seller Page', pages_seller_path
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
               Account
