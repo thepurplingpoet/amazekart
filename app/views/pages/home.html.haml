@@ -1,2 +1,7 @@
 %h1 Welcome to Amazekart!!!
 %h2 The one-stop-shop for all your needs!!
+
+%ul
+  =Product.all.each do |product|
+    %li
+      =product.name 

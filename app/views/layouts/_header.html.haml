@@ -8,7 +8,9 @@
         %li 
           =link_to 'Help', pages_help_path
         - if user_signed_in?
-          
+          - if current_user.seller?
+            %li 
+              = link_to 'Seller Page', pages_home_path
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
               Account
