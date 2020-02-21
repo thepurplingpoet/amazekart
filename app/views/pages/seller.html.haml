@@ -1,10 +1,16 @@
-%table
-  %tr
-    %th Name
-    %th Description
-    %th
-  - Product.all.each do |product|
+= link_to "Add a new product", new_product_path
+- if Product.any?  
+  %table
     %tr
-      %td= product.name
-      %td= product.description
-      %td= link_to 'Show', product_path(product)
+      %th Name
+      %th Description
+      %th
+  
+    - Product.all.each do |product|
+      - if product.user_id == current_user.id
+        %tr
+          %td= product.name
+          %td= product.description
+          %td= link_to 'Show', product_path(product)
+- else 
+  %p No products to show. Please add products. 
