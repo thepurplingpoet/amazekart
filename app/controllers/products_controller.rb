@@ -29,10 +29,6 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :description, :price, :stock, :discount).merge(user_id: current_user.id)
   end
 
-  def user_id_from_params
-    params[USER_ID]
-  end
-
   def show_by_seller(seller)
     
   end

@@ -1,7 +1,11 @@
 %h1 Welcome to Amazekart!!!
 %h2 The one-stop-shop for all your needs!!
 
+-# - byebug
 %ul
-  =Product.all.each do |product|
+  - @products.each do |product|
     %li
-      =product.name 
+      = product.name 
+      %br/
+      = product.description
+      %br/
