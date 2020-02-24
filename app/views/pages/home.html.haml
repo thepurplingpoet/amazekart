@@ -1,9 +1,15 @@
 %h1 Welcome to Amazekart!!!
 %h2 The one-stop-shop for all your needs!!
 
--# - byebug
+%h4 Find products across these categories
 %ul
-  - @products.each do |product|
+  - @verticals.each do |v|
+    %li 
+      = link_to  v.name , vertical_path(v)
+%br/
+%h4 Top Products :
+%ul
+  - @top_products.each do |product|
     %li
       = product.name 
       %br/

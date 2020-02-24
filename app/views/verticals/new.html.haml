@@ -1,0 +1,11 @@
+%h2 Add a new Vertical!!
+by 
+= current_user.email
+
+= form_with model:@vertical , local:true do |form|
+  %p
+    = form.label :title
+    %br/
+    = form.text_field :name
+  %p
+    = form.submit

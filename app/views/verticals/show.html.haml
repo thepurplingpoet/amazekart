@@ -1,0 +1,12 @@
+Products across these categories available 
+%ul
+  - @vertical.categories.each do |c|
+    %li
+      = c.name 
+      %ul 
+        - c.products.each do |product|
+          %li
+            = link_to product.name, product_path(product)
+
+  
+      

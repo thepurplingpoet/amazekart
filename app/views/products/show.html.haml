@@ -4,3 +4,14 @@
 %p
   %strong Description:
   = @product.description
+%p
+  %strong Price:
+  = @product.price
+%p
+  %strong Sale Price:
+  = @product.price - @product.discount
+
+- if current_user.id == @product.user_id
+  = link_to "Edit Product", edit_product_path(@product)
+- else
+  Checkout

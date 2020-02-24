@@ -1,0 +1,21 @@
+%h2 Add a new category!!
+by 
+= current_user.email
+- if @category.errors.any?
+  %h2
+    = pluralize(@category.errors.count, "error")
+    prohibited this category from being saved:
+  %ul
+    - @category.errors.full_messages.each do |msg|
+      %li= msg
+= form_with model:@category , local:true do |form|
+  %p
+    = form.label :title
+    %br/
+    = form.text_field :name
+  %p
+    = form.label :vertical
+    %br/
+    = form.collection_select :vertical_id, Vertical.all, :id, :name
+  %p
+    = form.submit

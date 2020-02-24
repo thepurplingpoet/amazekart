@@ -12,5 +12,6 @@
           %td= product.name
           %td= product.description
           %td= link_to 'Show', product_path(product)
+          %td= link_to 'Edit', edit_product_path(product)
 - else 
   %p No products to show. Please add products. 
