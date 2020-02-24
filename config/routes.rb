@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   resources :verticals
+  resources :orders
+  resources :wishlist
   get 'pages/seller'
 end
