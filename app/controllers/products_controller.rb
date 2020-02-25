@@ -4,8 +4,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @added_to_wishlist = Wishlist.find_by(user_id:current_user.id, product_id:@product.id)
   end
-
+  
   def new
     @product = Product.new
   end

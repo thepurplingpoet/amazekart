@@ -1,0 +1,10 @@
+%ul
+  - @wishlist_products.each do |product|
+    %li
+      = link_to product.name , product_path(product)
+      %ul
+        %li
+          = product.description
+          , Priced at : $
+          =product.price
+      
