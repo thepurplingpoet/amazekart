@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :wishlist
   get 'pages/seller'
+  get 'pages/cart'
+  get 'cart/add' => 'cart#add'
 end

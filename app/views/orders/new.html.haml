@@ -1,0 +1,11 @@
+%h2 Checkout!!
+
+= form_with scope:@order , local:true do |form|
+  %p
+    = form.label :title
+    = form.text_field :name
+  %p
+    = form.label :vertical
+    = form.collection_select :vertical_id, Vertical.all, :id, :name
+  %p
+    = form.submit

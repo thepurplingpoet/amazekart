@@ -1,0 +1,16 @@
+%h2
+  CART
+
+- if @cart_products.nil?
+  Your cart is empty
+- else
+  Items in your cart:
+  %ul
+    -@cart_products.each do |p|
+      %li
+        =link_to p.name, product_path(p)
+  
+  %br
+  %br
+  %br
+  = link_to "Checkout", new_order_path(order_params:{products:@cart_products})
