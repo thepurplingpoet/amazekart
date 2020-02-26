@@ -3,6 +3,8 @@
     Order ID: 
     =order_id
   %br
+  Date Purchased:
+  =Order.find(order_id).created_at
   %h4 
   Products:
   %table

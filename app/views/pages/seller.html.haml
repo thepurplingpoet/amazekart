@@ -2,6 +2,23 @@
 Total earnings:
 = @sale
 %br 
+%br
+%h3 Orders
+%table
+  %tr
+  %th Name
+  %th Price
+  %th Quantity
+  %th Date Ordered
+  
+  - Product.find_by_sql("select name, products.id , products.price , order_items.created_at, order_items.quantity from products join order_items on products.id=order_items.product_id where products.user_id=1").each do |product|
+      
+    %tr
+    %td= link_to product.name, product_path(product.id)
+    %td= product.price
+    %td= product.quantity
+    %td= product.created_at
+%br 
 %br 
 = link_to "Add a new product", new_product_path
 %h5 Product List
