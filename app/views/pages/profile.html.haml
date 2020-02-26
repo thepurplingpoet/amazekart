@@ -1,0 +1,21 @@
+-@previous_orders.pluck(:id).uniq.each do |order_id|
+  %h3
+    Order ID: 
+    =order_id
+  %br
+  %h4 
+  Products:
+  %table
+    %tr
+    %th Name
+    %th Price
+  
+    - Product.find(OrderItem.where(order_id: order_id).pluck(:product_id)).each do |product|
+      
+      %tr
+      %td= product.name
+      %td= product.price
+  %br
+  Total:
+  =Order.find(order_id).price.to_f
+    

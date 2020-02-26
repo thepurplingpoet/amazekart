@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   resources :wishlist
   get 'pages/seller'
   get 'pages/cart'
+  get 'pages/checkout_success'
+  get 'pages/profile'
   get 'cart/add' => 'cart#add'
 end

@@ -9,8 +9,10 @@
     -@cart_products.each do |p|
       %li
         =link_to p.name, product_path(p)
-  
   %br
   %br
   %br
   = link_to "Checkout", new_order_path(order_params:{products:@cart_products})
+
+  
+  
