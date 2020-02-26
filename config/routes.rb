@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :reviews
   get 'pages/home'
   get 'pages/help'
   get 'pages/about'

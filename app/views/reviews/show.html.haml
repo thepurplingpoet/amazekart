@@ -1,0 +1,16 @@
+%p#notice= notice
+
+
+%p
+  %b Product:
+  = Product.find(@review.product_id).name
+%p
+  %b Rating:
+  = @review.rating
+%p
+  %b Review:
+  = @review.review
+
+= link_to 'Edit', edit_review_path(@review)
+\|
+= link_to 'Back', product_path(@review.product_id)
