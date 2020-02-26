@@ -11,13 +11,14 @@
   %strong Sale Price:
   = @product.price - @product.discount
 
-- if current_user && current_user.id == @product.user_id
-  = link_to "Edit Product", edit_product_path(@product)
-- if current_user
-  = link_to "Add to Cart", cart_add_path(cart: {product_id: @product.id, user_id: current_user.id})
-  - if @added_to_wishlist.nil?
-    = link_to "Add to Wishlist", wishlist_index_path(:wishlist => {:product_id => @product.id, :user_id => current_user.id}), method: :post
+- if current_user 
+  - if current_user.id == @product.user_id
+    = link_to "Edit Product", edit_product_path(@product)
   -else
+    = link_to "Add to Cart", cart_add_path(cart: {product_id: @product.id, user_id: current_user.id})
+    - if @added_to_wishlist.nil?
+      = link_to "Add to Wishlist", wishlist_index_path(:wishlist => {:product_id => @product.id, :user_id => current_user.id}), method: :post
+    -else
     Added to Wishlist 
 - else
-  = link_to "Checkout"
+  = link_to "Login to purchase this item", new_user_session_path
