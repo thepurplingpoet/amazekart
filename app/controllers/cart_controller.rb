@@ -22,9 +22,7 @@ class CartController < ApplicationController
     redirect_to Product.find(cart_params[:product_id])
   end
 
-  def cart_params
-  params.require(:cart).permit(:product_id, :user_id)
-  end
+  
 
   def remove
     cart = JSON.parse(cookies[:cart])
@@ -39,6 +37,10 @@ class CartController < ApplicationController
     redirect_to pages_cart_path(current_user.id), method: :get
   end
 
- 
+  private
+
+  def cart_params
+    params.require(:cart).permit(:product_id, :user_id)
+    end
 
 end

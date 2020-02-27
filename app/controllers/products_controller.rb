@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
     if current_user
       @added_to_wishlist = Wishlist.find_by(user_id:current_user.id, product_id:@product.id)
     end
+    @in_cart = product_in_cart?
   end
   
   def new
@@ -39,5 +40,14 @@ class ProductsController < ApplicationController
 
   def show_by_seller(seller)
     
+  end
+
+  def product_in_cart?
+    product_to_find = params[:id].to_s
+    cart = JSON.parse(cookies[:cart])
+    user_cart = cart[current_user.id.to_s]
+    return if user_cart.nil?
+    products = cart[current_user.id.to_s]["products"]
+    products.include? product_to_find    
   end
 end
