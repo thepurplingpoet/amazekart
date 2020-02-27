@@ -9,6 +9,10 @@
     -@cart_products.each do |p|
       %li
         =link_to p.name, product_path(p)
+        %br
+        %ul
+          %li
+            =link_to "Remove item", cart_remove_path(cart: {product_id: p.id, user_id: current_user.id}), method: :delete
   %br
   %br
   %br

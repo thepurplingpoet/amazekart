@@ -1,3 +1,6 @@
+%h1 Past Orders
+- if @previous_orders.empty?
+  %h2 No orders yet. Buy something fun!!!
 -@previous_orders.pluck(:id).uniq.each do |order_id|
   %h3
     Order ID: 

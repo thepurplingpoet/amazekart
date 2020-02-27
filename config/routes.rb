@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get 'pages/checkout_success'
   get 'pages/profile'
   get 'cart/add' => 'cart#add'
+  delete 'cart/remove'=>'cart#remove'
 end
