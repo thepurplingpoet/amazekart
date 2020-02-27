@@ -17,6 +17,11 @@ class PagesController < ApplicationController
   def checkout_success
   end
 
+  def search
+    @query = search_params[:query]
+    @results = Product.where("lower(name) like :search", search: "%#{@query}%")
+  end
+
   def cart
     user_cart = JSON.parse(cookies[:cart])[current_user.id.to_s]
     if user_cart.nil?
@@ -44,4 +49,8 @@ class PagesController < ApplicationController
     @previous_orders = Order.joins(:order_items).where(user_id:current_user.id)  
   end
 
+  private
+  def search_params
+    params.require(:search).permit!
+  end
 end

@@ -1,0 +1,6 @@
+%h1 
+  Search Results for "
+  =@query
+  "
+-@results.each do |product|
+  =link_to product.name, product_path(product)

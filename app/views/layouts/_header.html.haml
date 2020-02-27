@@ -2,6 +2,13 @@
   .container
     .nav
       = link_to "AmazeKart",root_path, id:"logo"
+      = form_tag(pages_search_path, :method => "get", |
+        class: 'navbar-form navbar-left') do         |
+        .input-group
+          .search-input
+            = text_field_tag("search[query]")
+          .input-group-btn
+            = button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil
       %ul.nav.navbar-nav.navbar-right
         %li 
           =link_to 'Home', pages_home_path 
