@@ -1,3 +1,5 @@
+%h1 Wishlist
+
 %ul
   - @wishlist_products.each do |product|
     %li
@@ -7,4 +9,6 @@
           = product.description
           , Priced at : $
           =product.price
+          %br
+          =link_to "Remove", wishlist_path(Wishlist.find_by(user_id:current_user.id, product_id:product.product_id).id), method: :delete
       
