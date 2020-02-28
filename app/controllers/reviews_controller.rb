@@ -7,8 +7,8 @@ class ReviewsController < ApplicationController
 
   
   def new
-    @review = Review.new
-    @product_id = product_params[:product_id].to_i
+    product = Product.find(params[:product_id])
+    @review = product.reviews.build
   end
 
   def edit
@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
   
   def create
     @review = Review.new(review_params)
-
     respond_to do |format|
       if @review.save
         format.html { redirect_to product_path(@review.product_id), notice: 'Review was successfully created.' }
@@ -60,6 +59,6 @@ class ReviewsController < ApplicationController
     end
 
     def product_params
-      params.require(:review_params).permit(:product_id)
+      #params.require(:review_params).permit(:product_id)
     end
 end

@@ -3,6 +3,8 @@ class PagesController < ApplicationController
     @products = Product.all
     @verticals = Vertical.all
     @top_products = Product.all[0..5]
+
+    #OrderMailer.with(user:current_user).email.deliver_now!
   end
 
   def help
@@ -36,13 +38,8 @@ class PagesController < ApplicationController
     @cart_products = Product.find(product_ids)
   end
 
-  def seller
-    @seller_products = Product.select('id').where(user_id: current_user.id)
-    @seller_sale=OrderItem.select(['price', 'quantity']).where(product_id: @seller_products).pluck(:price, :quantity)
-    @sale = 0
-    @seller_sale.each do |p,q|
-      @sale += p*q
-    end
+  def seller 
+    @seller_details = current_user.seller_details
   end
 
   def profile

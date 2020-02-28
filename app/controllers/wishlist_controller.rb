@@ -2,9 +2,7 @@ class WishlistController < ApplicationController
   
   def index
     Product.uncached do
-      @wishlist_products = Product.find_by_sql("SELECT * FROM products
-      JOIN wishlists ON products.id = wishlists.product_id
-      where wishlists.user_id = #{current_user.id}")
+      @wishlist_products = Product.find(User.find(current_user.id).wishlists.pluck(:product_id))
     end
   end
 

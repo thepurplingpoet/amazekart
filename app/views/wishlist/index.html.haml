@@ -10,5 +10,5 @@
           , Priced at : $
           =product.price
           %br
-          =link_to "Remove", wishlist_path(Wishlist.find_by(user_id:current_user.id, product_id:product.product_id).id), method: :delete
+          =link_to "Remove", wishlist_path(Wishlist.find_by(user_id:current_user.id, product_id:product.id).id), method: :delete
       

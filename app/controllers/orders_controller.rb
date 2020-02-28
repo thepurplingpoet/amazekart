@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
 
     clear_cookies
 
+    # TODO:Send-email
     redirect_to "/pages/checkout_success"
   end
 

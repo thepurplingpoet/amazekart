@@ -1,37 +1,37 @@
-%h1 Seller Dashboard
-Total earnings:
-= @sale
-%br 
-%br
-%h3 Orders
-%table
-  %tr
-  %th Name
-  %th Price
-  %th Quantity
-  %th Date Ordered
-  
-  - Product.find_by_sql("select name, products.id , products.price , order_items.created_at, order_items.quantity from products join order_items on products.id=order_items.product_id where products.user_id=1").each do |product|
-      
-    %tr
-    %td= link_to product.name, product_path(product.id)
-    %td= product.price
-    %td= product.quantity
-    %td= product.created_at
-%br 
-%br 
-= link_to "Add a new product", new_product_path
-%h5 Product List
-- if Product.any?  
+- if current_user.seller?
+  %h1 Seller Dashboard
+  Total earnings:
+  = @seller_details[:total_revenue]
+  %br 
+  %br
+  %h3 Orders
   %table
     %tr
-      %th Name
-      %th Description
-      %th Stock
-      %th Price
+    %th Name
+    %th Price
+    %th Quantity
+    %th Date Ordered
   
-    - Product.all.each do |product|
-      - if product.user_id == current_user.id
+    - @seller_details[:sold_items].each do |item|
+      - product = item.product    
+      %tr
+      %td= link_to product.name, product_path(product.id)
+      %td= product.price
+      %td= item.quantity
+      %td= item.created_at
+  %br 
+  %br 
+  = link_to "Add a new product", new_product_path
+  %h5 Product List
+  - if @seller_details[:products].any?  
+    %table
+      %tr
+        %th Name
+        %th Description
+        %th Stock
+        %th Price
+  
+      - @seller_details[:products].each do |product|
         %tr
           %td= product.name
           %td= product.description
@@ -39,5 +39,8 @@ Total earnings:
           %td= product.price
           %td= link_to 'Show', product_path(product)
           %td= link_to 'Edit', edit_product_path(product)
-- else 
-  %p No products to show. Please add products. 
+  - else 
+    %p No products to show. Please add products. 
+-else
+  %h1 You are not a seller
+  %p Login to your account and change settings if you wish to sell items!!
